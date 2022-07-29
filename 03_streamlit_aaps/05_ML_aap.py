@@ -77,6 +77,21 @@ def get_classifier(classifier_name, params):
         clf = clf = RandomForestClassifier(n_estimators= params['n_estimators'], max_depth= params['max_depth'], random_state=1234)
     return clf
 
+# To Show source code with check box
+if st.checkbox('Show Code'):
+    with st.echo():
+        clf = get_classifier(classifier_name, params)
+
+        # Train and Test Split into 80 / 20 ratio
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1234)
+
+        # Ab hum classifier ko train karain gey
+        clf.fit(X_train, y_train)
+        y_pred = clf.predict(X_test)
+
+        # Model Accuracy check and print
+        acc = accuracy_score(y_test, y_pred)
+        
 clf = get_classifier(classifier_name, params)
 
 # Train and Test Split into 80 / 20 ratio
